@@ -3,16 +3,22 @@ import type { NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
   if (request.nextUrl.pathname.startsWith("/dashboard")) {
-    const user = localStorage.getItem("user");
-    if (!user) {
+    const token = request.cookies.get("token");
+    const user = request.cookies.get("user");
+
+    if (!token || !user) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
 
-    const userRole = JSON.parse(user).role.toLowerCase();
-    if (!request.nextUrl.pathname.includes(`/dashboard/${userRole}`)) {
-      return NextResponse.redirect(
-        new URL(`/dashboard/${userRole}`, request.url)
-      );
+    try {
+      const userRole = JSON.parse(user.value).role.toLowerCase();
+      if (!request.nextUrl.pathname.includes(`/dashboard/${userRole}`)) {
+        return NextResponse.redirect(
+          new URL(`/dashboard/${userRole}`, request.url)
+        );
+      }
+    } catch (error) {
+      return NextResponse.redirect(new URL("/login", request.url));
     }
   }
 

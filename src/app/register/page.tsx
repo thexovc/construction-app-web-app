@@ -12,7 +12,7 @@ export default function Register() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    name: '',
+    fullName: '',
     role: 'BUYER', // default role
   });
 
@@ -50,9 +50,9 @@ export default function Register() {
           <button
             type="button"
             onClick={() => setFormData({ ...formData, role: 'BUYER' })}
-            className={`p-4 rounded-lg border ${formData.role === 'BUYER'
-              ? 'border-blue-500 bg-blue-50'
-              : 'border-gray-200'
+            className={`p-4 cursor-pointer rounded-lg border ${formData.role === 'BUYER'
+              ? 'border-blue-500 bg-blue-50 text-gray-700'
+              : 'border-gray-200 text-gray-400'
               }`}
           >
             <h3 className="font-semibold">Buyer</h3>
@@ -62,9 +62,9 @@ export default function Register() {
           <button
             type="button"
             onClick={() => setFormData({ ...formData, role: 'VENDOR' })}
-            className={`p-4 rounded-lg border ${formData.role === 'VENDOR'
-              ? 'border-blue-500 bg-blue-50'
-              : 'border-gray-200'
+            className={`p-4 cursor-pointer rounded-lg border ${formData.role === 'VENDOR'
+              ? 'border-blue-500 bg-blue-50 text-gray-700'
+              : 'border-gray-200 text-gray-400'
               }`}
           >
             <h3 className="font-semibold">Vendor</h3>
@@ -74,9 +74,9 @@ export default function Register() {
           <button
             type="button"
             onClick={() => setFormData({ ...formData, role: 'RIDER' })}
-            className={`p-4 rounded-lg border ${formData.role === 'RIDER'
-              ? 'border-blue-500 bg-blue-50'
-              : 'border-gray-200'
+            className={`p-4 cursor-pointer rounded-lg border ${formData.role === 'RIDER'
+              ? 'border-blue-500 bg-blue-50 text-gray-700'
+              : 'border-gray-200 text-gray-400'
               }`}
           >
             <h3 className="font-semibold">Rider</h3>
@@ -97,8 +97,8 @@ export default function Register() {
                 required
                 className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Full name"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                value={formData.fullName}
+                onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
               />
             </div>
             <div>
